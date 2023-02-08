@@ -2,12 +2,13 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey, Date, Enum
 from sqlalchemy.orm import relationship
 from database import Base
 
-'''
+"""
 class Relation(str, Enum):
     family = "family"
     friend = "friend"
     neighbour = "neighbour"
-'''
+"""
+
 
 class Patient(Base):
     __tablename__ = "patient"
@@ -16,12 +17,13 @@ class Patient(Base):
     patient_name = Column(String, nullable=False, index=True)
     phone_number = Column(String, nullable=False, index=True)
     address = Column(String)
-    birth_date = Column(Date)
+    age = Column(Integer)
 
-    #caregiver = relationship("Caregiver", back_populates="patient")
+    # caregiver = relationship("Caregiver", back_populates="patient")
     chair_data = relationship("ChairData", back_populates="patient")
 
-'''
+
+"""
 class Caregiver(Base):
     __tablename__ = "caregiver"
 
@@ -34,12 +36,13 @@ class Caregiver(Base):
     patient_id = Column(Integer, ForeignKey("patient.id"))
     paitent = relationship("Patient", back_population="caregiver")
 
-'''
+"""
+
 
 class ChairData(Base):
     __tablename__ = "chair data"
 
-    chair_id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     body_temperature = Column(Float, nullable=False)
     oximeter = Column(Float, nullable=False)
     heart_rate = Column(Float, nullable=False)

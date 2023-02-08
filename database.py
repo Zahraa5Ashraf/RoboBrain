@@ -10,5 +10,9 @@ Base = declarative_base()
 
 SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
-
-#SQLALCHEMY_DATABASE_URL = "postgresql://postgres:mypassword@localhost/GP-Database"
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
