@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from . import models, schemas
+import schemas, models
 
 
 def store_chair_data(db: Session, data: schemas.ChairData):
@@ -32,5 +32,5 @@ def store_patient_data(db: Session, patient: schemas.Patient):
     db.add(new_patient)
     db.commit()
     db.refresh(new_patient)
-
+    
     return new_patient

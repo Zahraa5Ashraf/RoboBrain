@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class Patient(BaseModel):
     patient_id: int
     patient_name: str
-    phoen_number: str
+    phone_number: str
     address: str
     age: int
 
