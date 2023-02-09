@@ -15,7 +15,7 @@ class Patient(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     patient_name = Column(String, nullable=False, index=True)
-    phone_number = Column(String, nullable=False, index=True)
+    phone_number = Column(String, unique=True, nullable=False, index=True)
     address = Column(String)
     age = Column(Integer)
 
@@ -40,7 +40,7 @@ class Caregiver(Base):
 
 
 class ChairData(Base):
-    __tablename__ = "chair data"
+    __tablename__ = "chair_data"
 
     id = Column(Integer, primary_key=True, index=True)
     body_temperature = Column(Float, nullable=False)
@@ -49,4 +49,4 @@ class ChairData(Base):
     sugar_level = Column(Float, nullable=False)
 
     patient_id = Column(Integer, ForeignKey("patient.id"))
-    patient = relationship("Patient", back_populates="chair")
+    patient = relationship("Patient", back_populates="chair_data")

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-import database, schemas, crud
+import database, schemas, crud, models
 from sqlalchemy.orm import Session
 
 
@@ -8,9 +8,11 @@ router = APIRouter(
     prefix="/chair",
 )
 
+models.Base.metadata.create_all(bind=database.engine)
+
 
 @router.get(
-    "/data", response_model=list[schemas.ChairData], status_code=status.HTTP_200_OK
+    "/data", status_code=status.HTTP_200_OK
 )
 async def get_chair_data(db: Session = Depends(database.get_db)):
     return crud.get_chair_data(db=db)
