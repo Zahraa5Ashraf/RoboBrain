@@ -12,10 +12,10 @@ models.Base.metadata.create_all(bind=database.engine)
 
 
 @router.get(
-    "/data", status_code=status.HTTP_200_OK
+    "/data/{patient_id}", status_code=status.HTTP_200_OK
 )
-async def get_chair_data(db: Session = Depends(database.get_db)):
-    return crud.get_chair_data(db=db)
+async def get_chair_data(patient_id: int, db: Session = Depends(database.get_db)):
+    return crud.get_chair_data(patient_id = patient_id, db=db)
 
 
 @router.post(
