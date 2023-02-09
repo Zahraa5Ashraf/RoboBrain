@@ -1,5 +1,10 @@
 from pydantic import BaseModel
 
+# * Here we put our schemas to be used in the routes and the database models
+#* schemas work as blueprints for the database models and the routes request and response bodies
+
+
+# * this login schema used when create login route to specify the request body
 class Login(BaseModel):
     email: str
     password: str
@@ -14,6 +19,8 @@ class Login(BaseModel):
         }
 
 
+# * this signup schema used when create signup route to specify the request body
+# * it also inherit from the login schema to add the email and password fields and the Config class
 class SignUp(Login):
     id: int
     patient_full_name: str
@@ -37,6 +44,7 @@ class SignUp(Login):
         }
 
 
+# * this ChairData schema used when creating a route for the data coming from the rasberry pi
 class ChairData(BaseModel):
     body_temperature: float
     oximeter: float
@@ -55,4 +63,3 @@ class ChairData(BaseModel):
                 "patient_id": 1,
             }
         }
-
